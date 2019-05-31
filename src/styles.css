@@ -1,1 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
+
+body,html{
+    height:100%,
+    
+}
+
+.input-child-value{
+    top:50%;
+    left:50%;
+    position:fixed;
+}
+
+input{
+    color:#000;width:150px;height:50px;border:1px solid red;border-radius: 15px;font-size:20pt;outline:none;
+}
+.controller{
+    width: 100%;
+    display: flex;
+    flex-flow:column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+.node{
+    position: relative;
+    background:#000;
+    border-radius: 50%;
+    width:50px;
+    height:50px;
+    margin:0 auto;
+}
+
+
+.node-text{
+    position: absolute;
+    color:#FFF;
+    left:15px;
+    top:15px;
+    z-index:9999;
+}
+
+.child-node-less{
+    position: relative;
+    right:100px;
+    background:#FF0000;
+    border-radius: 50%;
+    width:50px;
+    height:50px;
+}
+
+.child-node-greater{
+    position: relative;
+    /* left:100px; */
+    background:#0000FF;
+    border-radius: 50%;
+    width:50px;
+    height:50px;
+}
+
+.child-container{
+    position: absolute;
+    width:100%;
+    height: 100%;
+    padding-top:80px;
+    z-index:1;
+} 

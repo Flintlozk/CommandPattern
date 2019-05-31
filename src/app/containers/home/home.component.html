@@ -1,0 +1,19 @@
+<app-history [nodeList]="nodeList"></app-history>
+
+<div class="controller" *ngIf="nodeList.length ===0">
+  <h1 style="color:#000">!!! ADD FIRST NODE VALUE !!!</h1>
+  <input #inputValue (keyup.enter)="addNode(inputValue.value,true)" placeholder="Value" autofocus>
+</div>
+
+<div class="node" *ngFor="let parentNode of nodeList" >
+  <div class="node-text" (click)="enableInputBox(parentNode.childNode)">{{parentNode.value |number}}</div>
+  <app-node [parentNode]="parentNode" [nodeLevel]="1" *ngIf="parentNode.childNode.length>0"></app-node>
+</div>
+
+<div class="input-child-value" *ngIf="inputBox">
+  <div>INPUT VALUE</div>
+    <input #childValue (keyup.enter)="addNode(childValue.value,false)" placeholder="NUMBER" autofocus>
+    
+</div>
+
+
