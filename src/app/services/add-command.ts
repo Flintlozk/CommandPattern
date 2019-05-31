@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Node,ICommand } from '../app.model'
+import { Node,ICommand } from '../app.model';
 import * as utils from '../../utils'
 
-@Injectable({
-  providedIn: 'root'
-})
 export class AddCommand implements ICommand{
   private value:number;
   private node:Node[];
@@ -21,7 +18,7 @@ export class AddCommand implements ICommand{
   execute(){
     if(this.isInit) return this.addParentNode()
     else return this.addChildNode()
-    }
+  }
 
   addParentNode(){
     this.node.push({
@@ -33,7 +30,6 @@ export class AddCommand implements ICommand{
   }
 
   addChildNode(){
-    console.log('this.value,this.store,this.node->>',this.value,this.store,this.node);
     let check = utils.checkConditionIsValueAlreadyDeclare(this.value,this.store,this.node)
     if(check){
       this.store.push({

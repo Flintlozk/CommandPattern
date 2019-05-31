@@ -23,7 +23,8 @@ export class HomeComponent implements OnInit{
   }
 
   addNode(value:number,isInit:boolean){
-    let currentNode = this.command.AddNode(new AddCommand(value,this.nodeList,this.nodeStore,isInit)) 
+    let object = new AddCommand(value,this.nodeList,this.nodeStore,isInit)
+    let currentNode = this.command.AddNode(object)
     if(!isInit && currentNode) this.inputBox = false
   }
 

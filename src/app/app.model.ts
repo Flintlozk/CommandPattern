@@ -3,12 +3,6 @@ export interface Node{
   childNode?:[]
 }
 
-export interface ExecuteModel{
-  value:number;
-  store:Node[];
-  list:Node[];
-}
-
 export interface ICommand{
   execute()
 }
