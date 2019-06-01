@@ -15,15 +15,4 @@ export class HistoryComponent implements OnInit {
   ngOnInit() {
   }
 
-  // undo(){
-  //   this.nodeList=[]
-  //   console.log('this.nodeList->>',this.nodeList);
-  //   // const value = this.historyService.undo()
-  //   // if(value.length>0) this.nodeList = value;
-  // }
-
-  // redo(){
-  //   console.log('REDO')
-  // }
-
 }

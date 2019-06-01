@@ -27,13 +27,11 @@ export class AddCommand implements ICommand{
     if(node.length>0){
       if(value <= parentValue.value){
         if(node[0].value <= parentValue.value){
-          console.log('LESS THAN PARENT')
           found = false
           alert('LESS THAN PARENT')
         }
       }else{
         if(node[0].value > parentValue.value){
-          console.log('GREATER THAN PARENT')
           found = false
           alert('GREATER THAN PARENT')
         }

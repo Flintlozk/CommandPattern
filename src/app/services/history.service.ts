@@ -12,7 +12,6 @@ export class HistoryService {
   constructor() { }
 
   storeHistory(value){
-    console.log('STORE')
     this.undoArray.push(JSON.stringify(value))
   }
   undo(){
