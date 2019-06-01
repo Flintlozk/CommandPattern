@@ -1,38 +1,38 @@
-import { Component, OnInit} from '@angular/core';
-import { HistoryService } from '../../services/history.service'
-import { CommandControlService} from '../../services/command-control.service'
-import { AddCommand } from '../../services/add-command'
+import { Component, OnInit,DoCheck} from '@angular/core';
 
-import { Node } from'../../app.model'
+import { ControlService } from '../../commandpattern/control.service'
+import { AddCommand } from '../../commandpattern/add-command'
+import { Node } from '../../commandpattern/node'
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit,DoCheck{
 
-  nodeList:Node[];
-  nodeStore:Node[];
+  node:Node[] = [];
   inputBox:boolean;
-  
-  constructor(public historyService:HistoryService,public command:CommandControlService) { }
 
-  ngOnInit() {  
-    this.nodeList = []
+  constructor(public control:ControlService) { 
   }
 
-  addNode(value:number,isInit:boolean){
-    let object = new AddCommand(value,this.nodeList,this.nodeStore,isInit)
-    let currentNode = this.command.AddNode(object)
-    if(!isInit && currentNode) this.inputBox = false
+  ngOnInit() {
+  }
+
+  ngDoCheck(){
+  }
+
+  addNode(value:number,bInit:boolean){
+    bInit?
+      this.control.AddNode(new AddCommand(value, this.node,this.node[0])):
+      this.control.AddNode(new AddCommand(value, this.node[0].childNode,this.node[0]))
+    this.inputBox = false;
   }
 
   enableInputBox(node){
     if(node.length<2){
       this.inputBox = true;
-      this.nodeStore = node
     }
   }
-
 }

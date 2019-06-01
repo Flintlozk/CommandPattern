@@ -8,7 +8,7 @@ import { NodeComponent } from './containers/node/node.component';
 import { HistoryComponent } from './containers/history/history.component';
 
 import { HistoryService } from './services/history.service'
-import { CommandControlService} from './services/command-control.service'
+import { ControlService} from './commandpattern/control.service'
 
 const COMPONENTS = [ 
   AppComponent,
@@ -19,7 +19,7 @@ const COMPONENTS = [
 
 const SERVICES = [
   HistoryService,
-  CommandControlService
+  ControlService
 ]
 
 @NgModule({

@@ -1,21 +1,23 @@
-<div class="child-container" *ngFor="let childNode of parentNode.childNode;let childIdx = index">
-    
-  <div class="child-node-less" *ngIf="childNode.value <= parentNode.value;else greater"  [ngStyle]="{'right':calculatePosition()}" >
-    <div class="node-text" (click)="enableInputBox(childNode.childNode)">{{childNode.value |number}}</div>
-    <app-node [parentNode]="childNode" [nodeLevel]="nodeLevel+1" *ngIf="childNode.childNode.length>0"></app-node>
-  
+<div class="child-container" *ngFor="let item of parentNode">
+  Level:{{nodeLevel}}
+  ChildNode:{{item.childNode.length}}
+  ParentValue:{{parentNodeValue}}
+  <div class="child-node-less" *ngIf="item.value <= parentNodeValue;else greater"  [ngStyle]="{'right':calculatePosition()}" >
+    <div class="node-text" (click)="enableInputBox(item.childNode)">{{item.value |number}}</div>
+
+    <app-node [parentNode]="item.childNode" [parentNodeValue]="item.value" [nodeLevel]="nodeLevel+1" *ngIf="item.childNode.length>0"></app-node>
   </div>
 
   <ng-template #greater>
     <div class="child-node-greater" [ngStyle]="{'left':calculatePosition()}" >
-      <div class="node-text" (click)="enableInputBox(childNode.childNode)">{{childNode.value |number}}</div>
-      <app-node [parentNode]="childNode" [nodeLevel]="nodeLevel+1" *ngIf="childNode.childNode.length>0"></app-node>
+      <div class="node-text" (click)="enableInputBox(item.childNode)">{{item.value |number}}</div>
 
+      <app-node [parentNode]="item.childNode" [parentNodeValue]="item.value" [nodeLevel]="nodeLevel+1" *ngIf="item.childNode.length>0"></app-node>
     </div>
   </ng-template>
-</div>
-
-<div class="input-child-value" *ngIf="inputBox2">
-    <div>INPUT VALUE</div>
-    <input #inputChildValue (keyup.enter)="addNode(inputChildValue.value)" placeholder="Value" autofocus>
+  
+  <div class="input-child-value" *ngIf="childInputBox">
+      <div>INPUT VALUE</div>
+      <input #inputChildValue (keyup.enter)="addNode(inputChildValue.value,item.childNode,item)" placeholder="Value" autofocus>
+  </div>
 </div>

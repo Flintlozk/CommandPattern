@@ -1,22 +1,23 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { HistoryService } from '../../services/history.service'
-import { CommandControlService} from '../../services/command-control.service'
-import { AddCommand } from '../../services/add-command'
+import { ControlService} from '../../commandpattern/control.service'
+import { AddCommand } from '../../commandpattern/add-command'
 
-import { Node } from '../../app.model'
+import { Node } from '../../commandpattern/node'
 
 @Component({
   selector: 'app-node',
   templateUrl: './node.component.html',
   styleUrls: ['./node.component.css']
 })
-export class NodeComponent implements OnInit {
+export class NodeComponent implements OnInit{
   @Input() nodeLevel:number
   @Input() parentNode:Node[];
-  widthInit = 600;
-  nodeStore:Node[];
-  inputBox2:boolean;
-  constructor(public historyService:HistoryService,public command:CommandControlService) { }
+  @Input() parentNodeValue:Node[];
+  widthInit = 200;
+  childInputBox:boolean;
+  selectNode:number;
+  constructor(public historyService:HistoryService,public control:ControlService) { }
 
   ngOnInit() {
   }
@@ -25,17 +26,15 @@ export class NodeComponent implements OnInit {
     let value =`${this.widthInit/this.nodeLevel}px` as string
     return value;
   }
-
   
-  addNode(value:number){
-    let currentNode = this.command.AddNode(new AddCommand(value,this.parentNode,this.nodeStore,false)) 
-    if(currentNode) this.inputBox2 = false
+  addNode(value:number,childNode:Node[],parentValue:Node){
+      this.control.AddNode(new AddCommand(value,childNode,parentValue))
+      this.childInputBox = false;
   }
 
   enableInputBox(node){
     if(node.length<2){
-      this.inputBox2 = true;
-      this.nodeStore = node
+      this.childInputBox = true;
     }
   }
 

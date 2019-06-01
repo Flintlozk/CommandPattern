@@ -1,8 +1,8 @@
-export interface Node{
-  value:number;
-  childNode?:[]
+export class Node{
+  value?:number;
+  childNode?:Node[]
 }
 
 export interface ICommand{
-  execute()
+  execute();
 }

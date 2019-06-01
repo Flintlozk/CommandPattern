@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { ICommand } from '../app.model';
+import { ICommand } from './icommand';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class CommandControlService {
+export class ControlService {
   constructor(){}
 
   AddNode(Command:ICommand){
-    return Command.execute()
+    Command.execute()
   }
   
 }
